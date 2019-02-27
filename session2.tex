@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{A Conceptual Approach to Brouwer's Fixed Point Theorem - Math Mentorship Session #2}
+\author{Jack Ceroni}
+\date{February 2019}
+
+\begin{document}
+
+\maketitle
+\newpage
+\section{Introduction}
+Brouwer's Fixed Point theorem is an incredibly import result within the field of algebraic topology, and is essential in the rigorous proof of Nash's theorem (proving that for any game, there exists a Nash equilibrium). This note will attempt to explain Brouwer's Fixed Point theorem in the conceptual fashion. Once I begin my formal "deep dive" into algebraic topology (hopefully in the coming months), I will update this note with a rigorous proof of BFPT, with commentary.
+\section{Brouwer's Fixed Point Theorem}
+Brouwer's Fixed point theorem states that if $f:D^n \ \rightarrow \ D^n$ is continuous (formally, for any open set $U$ in $D^n$, $f^{-1}(U)$ is open in $D^n$), then the mapping $f$ has a fixed point (formally, a point $x^{*}$ such that $f(x^{*}) \ = \ x^{*}$).
+\section{Conceptual Proof}
+We will prove this theorem by contradiction, meaning we will assume that for a continuous $f$ from the $n$-disk to itself, there is no fixed point of $f$.
+\newline\newline
+First we must define a continuous function $g$, such that $g:D \ \rightarrow \ \partial D$. This means that $D$ is mapping points to the boundary of the disk. Conceptually, we can think of the boundary as the "edge" of the disk. This is a very non-rigorous, but for the sake of this conceptual proof, we will accept this definition. 
+The $n$-unit disk is defined as the set of $n$-tuples given by the following bounds:
+$$D^n \ = \ \{(x_1, \ ..., \ x_n) \ | \ x_1^2 \ + \ ... \ + \ x_n^2 \ \leq \ 1\}$$
+Conceptually, if we define the boundary of the disk as the disk's edges, we get:
+$$\partial D^n \ = \ \{(x_1, \ ..., \ x_n) \ | \ x_1^2 \ + \ ... \ + \ x_n^2 \ = \ 1\}$$
+This means that for $n \ = \ 1$, the unit disk if a line in $\mathbb{R}$ extending from $-1$ to $1$. For $n \ = \ 2$, the unit disk is a unit circle. For $n \ = \ 3$, the disk is a unit sphere, and so on.
+\newline\newline
+If $f$ is continuous, then we can non-rigorously define it as follows: if $x$ is a point, and $y$ is another point, then $f(x)$ and $f(y)$ will also be close together. This is an informal way of giving the $\epsilon$-$\delta$ definition of continuity, which means that for any $x$, $\lim_{x \ \rightarrow \ c} \ f(x) \ = \ f(c)$. This can be proven using the epsilon-delta definition: Given some $\epsilon$, we should be able to find some $\delta$ such that $|x \ - \ c| \ < \ \delta$ implies $|f(x) \ - \ f(c)| \ < \ \epsilon$. We can then use $g$ to draw a straight line through $f(x)$ and $x$, mapping this point to the boundary. We will also say that for any $x \ \in \ \partial D$, $g(x) \ = \ x$.
+\newline\newline
+Let's consider $D^1$. Our goal is to find a \textbf{continuous} function $g$ such that every point on the line in $\mathbb{R}$ spanning from $-1$ to $1$ is mapped to the boundary (this means either $-1$ or $1$) and the boundary is mapped to itself. It turns out that this is not possible. For the purpose of this conceptual proof, there will be no rigorous proof, but we can realize that as we map all the points to the b boundary, there must be some "turning point" between mapping points to $-1$ and mapping points to $1$, which means that the function has a discontinuity, and the function is therefore not continuous.
+\newline\newline
+We can actually conjecture that this is true for all $D^n$, and as it turns out, this fact is true. Consider $D^2$, as we draw arrows going outwards from all the points to the boundary, there must be some point where there is a turning point, and the two points that are closed together that are mapped under $g$ are far apart, therefore showing the function is not continuous.
+\newline\newline
+If we know that there is no continuous $g: \ D^n \ \rightarrow \ \partial D^n$ such that $\forall x \ \in \ \partial D \ \Rightarrow \ g(x) \ = \ x$, then we know that we can't have straight lines connecting the line through every $x$ and $f(x)$ to the boundary representing continuous functions. The only way to ensure that $f$ is still a continuous function, and doesn't map close points to points that are far apart is if $f$ does have a fixed point, and since we $f$ is continuous (by hypothesis), $f$ must have a fixed point.
+\section{The Importance of Brouwer's Fixed Point Theorem}
+In the Solution Set #1 document (also linked to the Github page on which this link was found), we demonstrated that strategies within a game can be represented as simplices, which are generalization of triangles/tetrahedron to arbitrary number of dimensions. This means that mixed strategies represent the points of this tetrahedron (where the coefficient on one of the terms (choices for strategies) is $1$ and the rest have coefficient of $0$. The area in between the the points, on the surface of the tetrahedron represent mixed strategies, which are probabilistic linear combinations of strategies. We can prove that the simplex is homeomorphic (some $f:X \ \rightarrow \ Y$ such that $f(U) \ \in \ Y$ is open if and only if $U \ \in X$ is open) to the $n$-disk, depending on the number of dimensions the simplex is expressed in. If we know there is always a fixed point for some continuous function $f$ on the disk, and we can construct some continuous "can I get a better strategy" on the disk, then this function will have a fixed point. As you remember, this is a point that maps to itself, and so, the "can I get a better strategy function" cannot reach a more optimal value, if it maps to itself. This represents a Nash equilibrium, and since we have shown that this fixed point always exists, there will always be a Nash equilibrium for any game. This is called \textbf{Nash's Theorem}.
+\end{document}
