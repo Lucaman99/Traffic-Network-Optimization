@@ -132,61 +132,101 @@ class Player:
 
         all_nodes = self.graph[0]
 
+        print(all_nodes)
+        print("----------------------------")
+
         removed_nodes = [start_node]
 
         all = []
 
         distances = []
-        distances.append(0)
-        for k in range(0, len(all_nodes)-1):
-            distances.append(math.inf)
+        for k in range(0, len(all_nodes)):
+            if (all_nodes[k] != start_node):
+                distances.append(math.inf)
+            else:
+                distances.append(0)
 
         #Update the distance parameters
+        new = []
+        other_new = []
         while (end_node not in removed_nodes):
+
             pathfinder = []
+            pathfinder_edge = []
 
             for g in removed_nodes:
+                print("Removed node:"+str(g))
                 for i in range(0, len(self.graph[1])):
-                    if (self.graph[1][i].start_node == g):
-                        pathfinder.append(self.graph[1][i].start_node)
+                    #if (self.graph[1][i].start_node == g):
                     if (self.graph[1][i].start_node == g and self.graph[1][i].end_node not in removed_nodes):
                         new_distance = self.graph[1][i].weight
-                        if (new_distance < distances[all_nodes.index(self.graph[1][i].end_node)]):
+                        if (new_distance <= distances[all_nodes.index(self.graph[1][i].end_node)]):
+                            #print(new_distance)
+                            for n in range (0, len(pathfinder)):
+                                if (pathfinder[n][1] == self.graph[1][i].end_node):
+                                    print("TRUE")
+                                    del pathfinder[n]
+                                    del pathfinder_edge[n]
+                            pathfinder.append([self.graph[1][i].start_node, self.graph[1][i].end_node])
+                            pathfinder_edge.append(self.graph[1][i])
                             distances[all_nodes.index(self.graph[1][i].end_node)] = distances[all_nodes.index(g)]+new_distance
-
+                            print(self.graph[1][i].end_node)
+                            print(distances[all_nodes.index(g)]+new_distance)
+                            print("New: "+str(distances))
         #Remove the lowest distance from the graph
             minimum = math.inf
             holder = []
+
+            print("Pathfinder:"+str(pathfinder))
+
             for h in all_nodes:
                 if (h not in removed_nodes and distances[all_nodes.index(h)] < minimum):
                     minimum = distances[all_nodes.index(h)]
                     holder = h
             removed_nodes.append(holder)
+            print(holder)
+            for v in range (0, len(pathfinder)):
+                if (pathfinder[v][1] == holder):
+                    new.append(pathfinder[v])
+                    other_new.append(pathfinder_edge[v])
             #print(pathfinder[all_nodes.index(holder)])
+            print(removed_nodes)
+            print("New-list:"+str(new))
+
+        '''
             one.append(pathfinder[removed_nodes.index(holder)])
             two.append(holder)
-
+        '''
         path = [end_node]
+        edge_path = []
         v = end_node
+
+        print(new)
+
         while (v != start_node):
-            temp = []
-            path.append(one[two.index(v)])
-            if (one[two.index(v)] == start_node):
-                break
-            path.append(two[two.index(one[two.index(v)])])
-            v = two[two.index(one[two.index(v)])]
+            for i in range (0, len(new)):
+                if (new[i][1] == v):
+                    path.append(new[i][0])
+                    edge_path.append(other_new[i])
+                    v = new[i][0]
+
         path.reverse()
+        edge_path.reverse()
 
+        return edge_path
 
-        return path
+# Note to self: THIS CREATES A DIRECTED GRAPH
 
-'''
-e = [Edge(1, 2, lambda x: x, 0), Edge(2, 3, lambda x: x, 0), Edge(3, 4, lambda x: x, 0), Edge(1, 3, lambda x: x, 0), Edge(1, 3, lambda x: 0, 0)]
+e = [Edge(2, 1, lambda x: x, 0), Edge(1, 3, lambda x: 5, 0), Edge(3, 4, lambda x: x+10000000, 0), Edge(3, 1, lambda x: x, 0), Edge(1, 4, lambda x: 2000, 0), Edge(5, 4, lambda x: 2*x, 0), Edge(1, 5, lambda x: x, 0)]
 g = Graph(e)
 p = Player(g, e)
 g.add_player_congestion(p)
-print(p.dijkstra(1, 4))
-'''
+a = p.dijkstra(3, 4)
+print(a)
+for h in a:
+    print([h.start_node, h.end_node])
+    print(h.weight)
+
 
 
 
