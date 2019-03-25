@@ -1,0 +1,31 @@
+Imagine this: you are sitting on the GO bus, commuting to work early on a Monday morning. 
+As the bus progresses closer and closer to Union station, you look out the window and unsurprisingly, the rush-hour 
+traffic is worse than ever before. The buses and trucks are at a complete standstill with the smaller automobiles desperately
+trying and failing to weave through the vehicular maze. With all of this time spent sitting in traffic, you begin to wonder
+why traffic even exists in the first place. Couldn’t there be a more optimal way in which cars could be routed such that the
+overall average commute time is shorter? 
+
+Well, the answer to that question is probably yes, but it doesn’t mean that this situation would ever arise in the real world. 
+In reality, driving a car is very strategic. In addition, a mixture of the early morning coffee-fix, along with the sound of 
+honking horns and screeching tires usually brings out our primal instincts for self-preservation. Within this “game” of 
+driving we can therefore assume that everyone will be completely selfish and always act in their own best interest, whether 
+that is to the benefit or the detriment of others.
+
+With this combination of strategy and selfishness, we can come to the conclusion that even if there is a way that cars can be
+routed such that the overall time that everyone spends driving is minimized, there will always be people who will see an
+opportunity to even further decrease their individual commute time, and will jump on that opportunity, not giving a second
+thought to whether this will benefit the system as a whole. Because of this selfishness, if we consider a collection of 
+traffic on a road network, we are going to be very interested in this “equilibrium” point, where essentially, no one can
+maximize their personal gain anymore, and how this differs from the “optimal” point, which is where the average overall
+commute time on this road network is minimized.
+
+Unfortunately for you, this interesting outlook on traffic doesn’t help your individual situation on the GO bus this morning
+very much. But on a larger scale, the study of routing traffic from a logical and mathematical perspective could be useful,
+and could impact the lives of every commuter. For instance, when planning to build roads, we should always consider how 
+adding roads will affect which routes commuters take, assuming that everyone will try to maximize their own gain. When trying
+to understand traffic, and ultimately, how to minimize it, we should look at the paths through the network that large 
+amounts of people will take, and determine how this will affect the commute time of the others cars in the system. The reason
+that this is important is because if we can take these abstract concepts, and apply them to create explanations and models
+for how traffic works in the real world, then maybe one day, politicians will consult traffic-theory professionals who can
+comment on the mathematics of traffic before making decisions about transit and roads, ultimately shortening your painfully
+long morning commute, as much as possible.
